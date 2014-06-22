@@ -1,0 +1,67 @@
+<div class="col-xs-12">
+    
+
+    <form class="form-horizontal" role="form">
+        <br/>
+	<tabset>
+	
+		<tab>
+			<tab-heading>
+				<h4><i class="glyphicon glyphicon-stats"></i> Line Chart</h4>
+			</tab-heading>
+			<div class="col-xs-12">
+				<div google-chart chart="chart" style="{{cssStyle}}" on-ready="chartReady()"></div>
+				Market session will resume at 09:15Hrs and end at 15:15Hrs.
+				<!-- explicit close of tag seems to be necessary -->
+			</div>
+		</tab>
+		<tab >
+			<tab-heading>
+				<h4><i class="glyphicon glyphicon-comment"></i> About Application</h4>
+			</tab-heading>
+			<div class="col-xs-12" style="text-align:left;">
+				<br/><h4>
+				<ul>
+				<li>Based on simple Maven Java web app with AngularJS for front end(Reload content of a page if data changes in background).</li><br/>
+				<li>On server side it uses WebSocket to push stock updates when there is a change to all clients connected to this Server/WebSocket between 09:15 to 15:15 everyday assuming that these are the working hours of Stock Market.</li><br/>
+				<li>To generate a new prices for Stocks there is a Producer thread which keeps on running in background and gets started when ServletContext gets 
+				initialized. I have written a class that implements ServletContextListener from where I'm starting my Producer Thread.
+				</li><br/>
+				<li>This thread pushes JSON data every 10 Seconds in string format over the socket after generating new set of Stock prices in each iteration using WebSocket reference which is declared as a member variable.
+				</li><br/>
+				<li>Wrapper format of data sent is as follows:<br/>
+						{"chartColumns":[{"id":"month","label":"Month","type":"string"},<br/>
+										{"id":"bmw","label":"BMW","type":"number"},<br/>
+										{"id":"massarati","label":"Massarati","type":"number"},<br/>
+										{"id":"pagani","label":"Pagani","type":"number"}],<br/>
+						"message":"MARKET_NOT_STARTED/DATA_AVAILABLE",<br/>
+						"chartData":"array of json",<br/>
+						"status":"NO_DATA/SUCCESS"}<br/>
+				</li><br/>
+				<li>On client side, AngularJS needs data in specific JSON format to render a chart based on that data. So Producer thread generates.</li><br/>
+				<li>It uses library to render these charts 
+				Connection to web socket in done in directive which is responsible for drawing chart once data gets updated using onMessage method.
+				 </li><br/>
+				 </ul>
+				</h4>
+			</div>
+		</tab>
+		<tab>
+			<tab-heading>
+				<h4><i class="glyphicon glyphicon-user"></i> About Me</h4>
+			</tab-heading>
+			<div class="col-xs-12" style="text-align:left;">
+				<h4><p>Name: <a href="https://www.linkedin.com/profile/view?id=70679878&trk=nav_responsive_tab_profile" target="_blank"><i class="glyphicon glyphicon-link"></i> Chaitanya B. Deshmukh</a></p>
+				<p>Domain: Java Web Applications</p>
+				<p>Experience: 2.5Yrs</p>
+				<p>Edu: Masters Of Computer Science(University Of Pune)</p>
+				</h4>
+			</div>
+		</tab>
+        
+ 
+    </tabset>    
+    </form>
+
+</div>
+       
