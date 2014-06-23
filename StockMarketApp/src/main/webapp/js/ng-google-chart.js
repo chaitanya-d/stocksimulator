@@ -89,7 +89,7 @@
                     select: '&'
                 },
                 link: function ($scope, $elm) {
-					var ws = new WebSocket("ws://localhost:8080/StockMarketApp/stockUpdate");
+					var ws = new WebSocket("ws://" + document.location.host + document.location.pathname + "stockUpdate");
 
 					ws.onopen = function(){  
 						console.log("Socket has been opened!");  
